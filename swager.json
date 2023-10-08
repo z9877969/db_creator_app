@@ -758,6 +758,12 @@
                     }
                   }
                 }
+              },
+              "currency": {
+                "type": "string",
+                "description": "User`s transactions currency",
+                "enum": ["usd", "eur", "uah"],
+                "example": "usd"
               }
             }
           },
