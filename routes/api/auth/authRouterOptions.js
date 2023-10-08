@@ -8,13 +8,13 @@ const authRouterOptions = [
   {
     method: "post",
     route: "/register",
-    middlewares: [validate.authUser],
+    middlewares: [validate.registerUser],
     controller: controllers.registerUser,
   },
   {
     method: "post",
     route: "/login",
-    middlewares: [validate.authUser],
+    middlewares: [validate.loginUser],
     controller: controllers.loginUser,
   },
   {

@@ -5,14 +5,30 @@ const {
   regex: { EMAIL_REGEX },
 } = require("../../constants");
 
-const authUserValidationSchema = Joi.object({
+const userRegisterValidationSchema = Joi.object({
+  name: Joi.string()
+    .min(constants.USER_NAME_LENGTH.MIN)
+    .max(constants.USER_NAME_LENGTH.MAX)
+    .required(),
   email: Joi.string()
     .pattern(EMAIL_REGEX)
-    .max(constants.PASSWORD_LENGTH.MAX)
+    .max(constants.EMAIL_LENGTH.MAX)
     .required(),
   password: Joi.string()
     .min(constants.PASSWORD_LENGTH.MIN)
-    .max(constants.PASSWORD_LENGTH.MAX),
+    .max(constants.PASSWORD_LENGTH.MAX)
+    .required(),
+});
+
+const userLoginValidationSchema = Joi.object({
+  email: Joi.string()
+    .pattern(EMAIL_REGEX)
+    .max(constants.EMAIL_LENGTH.MAX)
+    .required(),
+  password: Joi.string()
+    .min(constants.PASSWORD_LENGTH.MIN)
+    .max(constants.PASSWORD_LENGTH.MAX)
+    .required(),
 });
 
 const refreshTokensValidationSchema = Joi.object({
@@ -37,11 +53,14 @@ const updateUserInfoValidationSchema = Joi.object({
   oldPassword: Joi.string()
     .min(constants.PASSWORD_LENGTH.MIN)
     .max(constants.PASSWORD_LENGTH.MAX),
-  name: Joi.string().max(constants.MAX_NAME_LENGTH),
+  name: Joi.string()
+    .min(constants.USER_NAME_LENGTH.MIN)
+    .max(constants.USER_NAME_LENGTH.MAX),
 });
 
 module.exports = {
-  authUser: authUserValidationSchema,
+  registerUser: userRegisterValidationSchema,
+  loginUser: userLoginValidationSchema,
   updateUserInfo: updateUserInfoValidationSchema,
   refreshTokens: refreshTokensValidationSchema,
 };

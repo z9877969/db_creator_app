@@ -1,9 +1,21 @@
 const { createError } = require("../../helpers/error");
 const { userValidationSchemas: schemas } = require("../../models");
 
-const validateUserAuth = async (req, res, next) => {
+const validateUserRegister = async (req, res, next) => {
   try {
-    const { error } = await schemas.authUser.validate(req.body);
+    const { error } = await schemas.registerUser.validate(req.body);
+    if (error) {
+      throw createError(400, error.message);
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const validateUserLogin = async (req, res, next) => {
+  try {
+    const { error } = await schemas.loginUser.validate(req.body);
     if (error) {
       throw createError(400, error.message);
     }
@@ -15,7 +27,7 @@ const validateUserAuth = async (req, res, next) => {
 
 const validateTokensRefreshing = async (req, res, next) => {
   try {
-    const { error } = await schemas.refreshTokens(req.body);
+    const { error } = await schemas.refreshTokens.validate(req.body);
     if (error) {
       throw createError(400, error.message);
     }
@@ -26,6 +38,7 @@ const validateTokensRefreshing = async (req, res, next) => {
 };
 
 module.exports = {
-  authUser: validateUserAuth,
+  loginUser: validateUserLogin,
+  registerUser: validateUserRegister,
   refreshTokens: validateTokensRefreshing,
 };

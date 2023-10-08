@@ -1,5 +1,10 @@
 const { createError, passwordTools, tokenTools } = require("../../helpers");
-const { User, Session } = require("../../models");
+const { User, Session, Category, Transaction } = require("../../models");
+const {
+  transactionSchema: transactionSchemaConstants,
+} = require("../../constants");
+
+const { TRANSACTION_TYPE } = transactionSchemaConstants;
 
 const loginUser = async (body) => {
   try {
@@ -22,8 +27,35 @@ const loginUser = async (body) => {
       sid,
     });
 
+    const allCategories = await Category.find({ owner: user._id });
+
+    const categories = !allCategories.length
+      ? {
+          [TRANSACTION_TYPE.INCOMES]: [],
+          [TRANSACTION_TYPE.EXPENCES]: [],
+        }
+      : allCategories.reduce((acc, { type, ...category }) => {
+          if (!acc[type]) {
+            acc[type] = [category];
+          } else {
+            acc[type].push(category);
+          }
+          return acc;
+        }, {});
+
+    // const
+
+    //     const transactions = Transaction.aggregate([
+    //   {
+    //     $match: {
+    //       date: { $gt: prev, $lt: next },
+    //       owner: { $eq: _id },
+    //     },
+    //   },
+    // ]);
+
     return {
-      user: { _id, email, gender, name, avatarUrl, waterRate },
+      user: { _id, email, name, avatarUrl, categories },
       sid,
       accessToken,
       refreshToken,

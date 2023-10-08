@@ -3,7 +3,7 @@ const tokenTools = require("./tokenTools");
 const passwordTools = require("./passwordTools");
 const filesTools = require("./filesTools");
 const addWaterNotesList = require("./addWaterNotesList");
-const getMonthBreakPoints = require("./getMonthBreakPoints");
+const monthBreakPoints = require("./monthBreakPoints");
 const getCurrentDayBreakPoints = require("./getCurrentDayBreakPoints");
 const getHoursDiff = require("./getHoursDiff");
 const getUserAccessToEntity = require("./getUserAccessToEntity");
@@ -16,7 +16,7 @@ module.exports = {
   passwordTools,
   filesTools,
   addWaterNotesList,
-  getMonthBreakPoints,
+  monthBreakPoints,
   getCurrentDayBreakPoints,
   getHoursDiff,
   getUserAccessToEntity,

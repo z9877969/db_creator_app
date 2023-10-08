@@ -1,0 +1,33 @@
+const CATEGORY_NAME_LENGTH = {
+  MIN: 2,
+  MAX: 16,
+};
+
+const TRANSACTION_TYPE = {
+  INCOMES: "incomes",
+  EXPENCES: "expences",
+};
+
+const TRANSACTION_SUM = {
+  MIN: 1,
+  MAX: 1000000,
+};
+
+const TRANSACTION_COMMENT_LENGTH = {
+  MIN: 3,
+  MAX: 48,
+};
+
+const TRANSACTIONS_CURRENCY = {
+  USD: "usd",
+  EUR: "eur",
+  UAH: "uah",
+};
+
+module.exports = {
+  CATEGORY_NAME_LENGTH,
+  TRANSACTION_TYPE,
+  TRANSACTION_SUM,
+  TRANSACTION_COMMENT_LENGTH,
+  TRANSACTIONS_CURRENCY,
+};

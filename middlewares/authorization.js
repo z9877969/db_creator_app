@@ -39,7 +39,7 @@ const accessToken = async (req, res, next) => {
 
 const refreshToken = async (req, res, next) => {
   try {
-    const [bearer, token] = req.headers.autorization.split(" ");
+    const [bearer, token] = req.headers.authorization.split(" ");
 
     if (bearer !== "Bearer" || !token) {
       throw createError(400, "No token provided");

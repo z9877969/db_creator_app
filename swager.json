@@ -11,16 +11,10 @@
   },
   "servers": [
     {
-      "url": "https://water-traker-backend.p.goit.global/api/",
-      "variables": {
-        "environment": {
-          "default": "http://localhost:4040/api/",
-          "enum": [
-            "https://water-traker-backend.p.goit.global/api/",
-            "http://localhost:4040/api/"
-          ]
-        }
-      }
+      "url": "https://expences-tracker.b.goit.study/api/"
+    },
+    {
+      "url": "http://localhost:4040/api/"
     }
   ],
   "tags": [
@@ -33,8 +27,12 @@
       "description": "User endpoints"
     },
     {
-      "name": "Water",
-      "description": "Water notes and them statistics endpoints"
+      "name": "Category",
+      "description": "Transactions category endpoints"
+    },
+    {
+      "name": "Transactions",
+      "description": "Transactions endpoints"
     }
   ],
   "paths": {
@@ -623,14 +621,21 @@
   "components": {
     "schemas": {
       "RegistrationRequest": {
-        "required": ["email", "password"],
+        "required": ["name", "email", "password"],
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Bob",
+            "minLength": 2,
+            "maxLength": 32
+          },
           "email": {
             "type": "string",
             "description": "User's email",
             "format": "email",
-            "maxLength": 254
+            "maxLength": 64
           },
           "password": {
             "type": "string",
@@ -644,6 +649,11 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Bob"
+          },
           "email": {
             "type": "string",
             "description": "User's email",
@@ -664,7 +674,7 @@
             "type": "string",
             "description": "User's email",
             "format": "email",
-            "maxLength": 254
+            "maxLength": 64
           },
           "password": {
             "type": "string",
@@ -689,31 +699,65 @@
               "email": {
                 "type": "string",
                 "description": "User's email",
-                "format": "email"
-              },
-              "gender": {
-                "type": "string",
-                "description": "User's gender",
-                "enum": ["mail", "femail"]
+                "format": "email",
+                "maxLength": 64
               },
               "name": {
                 "type": "string",
-                "nullable": true,
                 "description": "User`s name",
+                "minLength": 2,
                 "maxLength": 32,
-                "example": "Bob or null"
+                "example": "Bob"
               },
               "avatarUrl": {
                 "type": "string",
                 "description": "User`s avatar url",
                 "example": "https://some.url.com/path/to/avatar.jpg or null"
               },
-              "waterRate": {
-                "type": "integer",
-                "description": "User`s dayly water rate (ml)",
-                "example": 1500,
-                "min": 1,
-                "max": 15000
+              "categories": {
+                "type": "object",
+                "properties": {
+                  "incomes": {
+                    "type": "array",
+                    "description": "User`s incomes categories list",
+                    "items": {
+                      "type": "object",
+                      "description": "User`s incomes categories",
+                      "properties": {
+                        "_id": {
+                          "description": "User`s transaction category id",
+                          "type": "string",
+                          "example": "6522bf1f9027bb7d55d6512b"
+                        },
+                        "name": {
+                          "description": "User`s transaction category name",
+                          "type": "string",
+                          "example": "Salary"
+                        }
+                      }
+                    }
+                  },
+                  "expences": {
+                    "type": "array",
+                    "description": "User`s expences categories list",
+                    "items": {
+                      "type": "object",
+                      "description": "User`s expences categories",
+                      "properties": {
+                        "_id": {
+                          "description": "User`s transaction category id",
+                          "type": "string",
+                          "example": "6522bf1f9027bb7d55c1973a"
+                        },
+                        "name": {
+                          "description": "User`s transaction category name",
+                          "type": "string",
+                          "example": "Salary"
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           },
