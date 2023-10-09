@@ -752,7 +752,7 @@
                         "name": {
                           "description": "User`s transaction category name",
                           "type": "string",
-                          "example": "Salary"
+                          "example": "Car"
                         }
                       }
                     }
@@ -823,16 +823,6 @@
             "description": "User`s id",
             "example": "507f1f77bcf86cd799439011"
           },
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "gender": {
-            "type": "string",
-            "description": "User's gender",
-            "enum": ["mail", "femail"]
-          },
           "name": {
             "type": "string",
             "nullable": true,
@@ -840,17 +830,65 @@
             "maxLength": 32,
             "example": "Bob or null"
           },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
           "avatarUrl": {
             "type": "string",
             "description": "User`s avatar url",
             "example": "https://some.url.com/path/to/avatar.jpg or null"
           },
-          "waterRate": {
-            "type": "integer",
-            "description": "User`s dayly water rate (ml)",
-            "example": 1500,
-            "min": 1,
-            "max": 15000
+          "currency": {
+            "type": "string",
+            "description": "User's transactions currency",
+            "enum": ["usd", "eur", "uah"]
+          },
+          "categories": {
+            "type": "object",
+            "properties": {
+              "incomes": {
+                "type": "array",
+                "description": "User`s incomes categories list",
+                "items": {
+                  "type": "object",
+                  "description": "User`s incomes categories",
+                  "properties": {
+                    "_id": {
+                      "description": "User`s transaction category id",
+                      "type": "string",
+                      "example": "6522bf1f9027bb7d55d6512b"
+                    },
+                    "name": {
+                      "description": "User`s transaction category name",
+                      "type": "string",
+                      "example": "Salary"
+                    }
+                  }
+                }
+              },
+              "expences": {
+                "type": "array",
+                "description": "User`s expences categories list",
+                "items": {
+                  "type": "object",
+                  "description": "User`s expences categories",
+                  "properties": {
+                    "_id": {
+                      "description": "User`s transaction category id",
+                      "type": "string",
+                      "example": "6522bf1f9027bb7d55c1973a"
+                    },
+                    "name": {
+                      "description": "User`s transaction category name",
+                      "type": "string",
+                      "example": "Car"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },

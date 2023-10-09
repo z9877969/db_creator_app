@@ -1,4 +1,4 @@
-const { createError, separatesCategoriesByType } = require("../../helpers");
+const { separatesCategoriesByType } = require("../../helpers");
 const { User, Category } = require("../../models");
 
 const getCurrentUser = async (user) => {
@@ -11,10 +11,7 @@ const getCurrentUser = async (user) => {
 
     const categories = separatesCategoriesByType(userCategories);
 
-    userData.categories = categories;
-    
-
-    return userData;
+    return { ...userData._doc, categories };
   } catch (error) {
     throw error;
   }
