@@ -25,8 +25,8 @@ const monthBreakPoints = {
 
 const date = new Date();
 
-console.log(date.toISOString());
+// console.log(date.toISOString());
 // console.log(Date.UTC());
-console.log(date.getTimezoneOffset());
+// console.log(date.getTimezoneOffset());
 
 module.exports = monthBreakPoints;
