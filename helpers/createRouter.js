@@ -23,7 +23,7 @@ class RouterCreator {
           ? dm.concat(middlewares)
           : middlewares
           ? middlewares
-          : dm
+          : dm.length
           ? dm
           : null;
       m

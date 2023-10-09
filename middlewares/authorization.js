@@ -28,7 +28,7 @@ const accessToken = async (req, res, next) => {
       req.user = user;
       req.user.sid = sid;
 
-      return next();
+      next();
     } catch (error) {
       throw error;
     }

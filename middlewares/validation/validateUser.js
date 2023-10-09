@@ -27,7 +27,29 @@ const validateWaterRateUpdating = async (req, res, next) => {
   }
 };
 
+const validateRemovingAvatar = async (req, res, next) => {
+  try {
+    const {
+      params: { avatarId },
+      user,
+    } = req;
+
+    const userAvatarId = user.avatarUrl?.split("/").pop().split(".")[0] || null;
+
+    if (!userAvatarId || !avatarId) {
+      throw createError(404, "Image not found");
+    }
+    if (userAvatarId !== avatarId) {
+      throw createError(403, "Access denied");
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   updateUserInfo: validateUserInfoUpdating,
   updateWaterRate: validateWaterRateUpdating,
+  removeAvatar: validateRemovingAvatar,
 };

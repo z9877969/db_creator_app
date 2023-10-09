@@ -1,8 +1,9 @@
+const { createRouter } = require("../../helpers");
+const { auth: controllers } = require("../../controllers");
 const {
   validateAuth: validate,
   authorization,
-} = require("../../../middlewares");
-const { auth: controllers } = require("../../../controllers");
+} = require("../../middlewares");
 
 const authRouterOptions = [
   {
@@ -31,4 +32,10 @@ const authRouterOptions = [
   },
 ];
 
-module.exports = authRouterOptions;
+const authRouter = createRouter({
+  options: authRouterOptions,
+});
+
+authRouter.setRouter();
+
+module.exports = authRouter.router;

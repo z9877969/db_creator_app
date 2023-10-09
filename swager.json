@@ -333,6 +333,46 @@
             "content": {}
           }
         }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Remove user`s avatar",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "avatarId",
+            "description": "User`s avatar id. (value into end of baseUrl before '.webp')",
+            "required": true
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "Successfull operation",
+            "content": {}
+          },
+          "400": {
+            "description": "No token provided",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized (invalid access token)",
+            "content": {}
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user / Invalid session / Image not found",
+            "content": {}
+          }
+        }
       }
     },
     "/users/water/rate": {
