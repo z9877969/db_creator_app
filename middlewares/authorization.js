@@ -21,6 +21,8 @@ const accessToken = async (req, res, next) => {
 
       const user = await User.findById(id);
 
+      console.log("user :>> ", user);
+
       if (!user) {
         throw createError(404, "Invalid user");
       }
