@@ -896,66 +896,37 @@
         "required": [],
         "type": "object",
         "properties": {
-          "type": "object",
-          "properties": {
-            "email": {
-              "type": "string",
-              "description": "User's email",
-              "format": "email"
-            },
-            "password": {
-              "type": "string",
-              "description": "User's new password",
-              "example": "qwer1234",
-              "minLength": 8,
-              "maxLength": 64
-            },
-            "oldPassword": {
-              "type": "string",
-              "description": "User's old password",
-              "example": "abcd9876",
-              "minLength": 8,
-              "maxLength": 64
-            },
-            "gender": {
-              "type": "string",
-              "description": "User's gender",
-              "enum": ["mail", "femail"]
-            },
-            "name": {
-              "type": "string",
-              "description": "User`s name",
-              "maxLength": 32,
-              "example": "Bob"
-            }
+          "name": {
+            "type": "string",
+            "description": "User`s name",
+            "maxLength": 32,
+            "example": "Bob"
+          },
+          "currency": {
+            "type": "string",
+            "description": "User's transactions currency",
+            "enum": ["usd", "eur", "uah"]
           }
         }
       },
       "UpdateUserResponse": {
         "type": "object",
         "properties": {
-          "email": {
+          "_id": {
             "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "password": {
-            "type": "string",
-            "description": "User's password",
-            "example": "qwer1234",
-            "minLength": 8,
-            "maxLength": 64
-          },
-          "gender": {
-            "type": "string",
-            "description": "User's gender",
-            "enum": ["mail", "femail"]
+            "description": "User`s id",
+            "example": "507f1f77bcf86cd799439011"
           },
           "name": {
             "type": "string",
             "description": "User`s name",
             "maxLength": 32,
             "example": "Bob"
+          },
+          "currency": {
+            "type": "string",
+            "description": "User's transactions currency",
+            "enum": ["usd", "eur", "uah"]
           }
         }
       },
