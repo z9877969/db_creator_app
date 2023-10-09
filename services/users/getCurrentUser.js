@@ -1,5 +1,5 @@
-const { createError } = require("../../helpers");
-const { User } = require("../../models");
+const { createError, separatesCategoriesByType } = require("../../helpers");
+const { User, Category } = require("../../models");
 
 const getCurrentUser = async (user) => {
   try {
@@ -7,6 +7,13 @@ const getCurrentUser = async (user) => {
       user._id,
       "-createdAt -password -updatedAt"
     );
+    const userCategories = await Category.find({ owner: user._id });
+
+    const categories = separatesCategoriesByType(userCategories);
+
+    userData.categories = categories;
+    
+
     return userData;
   } catch (error) {
     throw error;

@@ -8,6 +8,7 @@ const getCurrentDayBreakPoints = require("./getCurrentDayBreakPoints");
 const getHoursDiff = require("./getHoursDiff");
 const getUserAccessToEntity = require("./getUserAccessToEntity");
 const createRouter = require("./createRouter");
+const separatesCategoriesByType = require("./separatesCategoriesByType");
 
 module.exports = {
   createError,
@@ -21,4 +22,5 @@ module.exports = {
   getHoursDiff,
   getUserAccessToEntity,
   createRouter,
+  separatesCategoriesByType,
 };

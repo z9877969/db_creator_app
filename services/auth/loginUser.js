@@ -1,4 +1,9 @@
-const { createError, passwordTools, tokenTools } = require("../../helpers");
+const {
+  createError,
+  passwordTools,
+  tokenTools,
+  separatesCategoriesByType,
+} = require("../../helpers");
 const { User, Session, Category, Transaction } = require("../../models");
 const {
   transactionSchema: transactionSchemaConstants,
@@ -20,28 +25,16 @@ const loginUser = async (body) => {
 
     const { _id: sid } = await Session.create({ uid: user._id });
 
-    const { _id, email, gender, name, avatarUrl, waterRate } = user;
+    const { _id, email, currency, name, avatarUrl } = user;
 
     const { accessToken, refreshToken } = tokenTools.createTokens({
       id: user._id,
       sid,
     });
 
-    const allCategories = await Category.find({ owner: user._id });
+    const userCategories = await Category.find({ owner: user._id });
 
-    const categories = !allCategories.length
-      ? {
-          [TRANSACTION_TYPE.INCOMES]: [],
-          [TRANSACTION_TYPE.EXPENCES]: [],
-        }
-      : allCategories.reduce((acc, { type, ...category }) => {
-          if (!acc[type]) {
-            acc[type] = [category];
-          } else {
-            acc[type].push(category);
-          }
-          return acc;
-        }, {});
+    const categories = separatesCategoriesByType(userCategories);
 
     // const
 
@@ -55,7 +48,7 @@ const loginUser = async (body) => {
     // ]);
 
     return {
-      user: { _id, email, name, avatarUrl, categories },
+      user: { _id, email, name, avatarUrl, categories, currency },
       sid,
       accessToken,
       refreshToken,
