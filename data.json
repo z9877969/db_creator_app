@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Apples",
+    "amount": "100 g",
+    "img": "https://res.cloudinary.com/dec1shvoo/image/upload/v1692479041/Your%20health/pngfind.com-apple-png-1037796_udjai9.png",
+    "calories": 52,
+    "nutrition": {
+      "carbohydrates": 14,
+      "protein": 0.3,
+      "fat": 0.2
+    }
+  },
+  {
+    "name": "Strawberries",
+    "amount": "100 g",
+    "img": "https://res.cloudinary.com/dec1shvoo/image/upload/v1692479315/Your%20health/Single-Strawberries-PNG-HD-Isolated_sc0q7d.png",
+    "calories": 32,
+    "nutrition": {
+      "carbohydrates": 7.68,
+      "protein": 0.67,
+      "fat": 0.3
+    }
+  },
+  {
+    "name": "Blueberries",
+    "amount": "100 g",
+    "img": "https://res.cloudinary.com/dec1shvoo/image/upload/v1692473431/Your%20health/5bbd90939b171-550578ad4cdf0c24f986745af5b9fd7f_eru2fy.png",
+    "calories": 57,
+    "nutrition": {
+      "carbohydrates": 14.49,
+      "protein": 0.74,
+      "fat": 0.33
+    }
+  }
+]
